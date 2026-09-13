@@ -44,11 +44,11 @@ jobs:
             --arg ref "${HEAD_REF}" \
             --arg wait "${JOINT_WAIT:-false}" \
             --arg role "synapse" \
-            '{event_type:"joint_report", client_payload:{joint_id:$joint_id, repo:$repo, pr:$pr, sha:$sha, ref:$ref, wait:$wait, role:$role, public_tests:["public.smoke"], exclusive_tests:["synapse.exclusive"]}}')
+            '{event_type:"joint_ci_report", client_payload:{joint_id:$joint_id, repo:$repo, pr:$pr, sha:$sha, ref:$ref, wait:$wait, role:$role, public_tests:["public.smoke"], exclusive_tests:["synapse.exclusive"]}}')
           echo "$PAYLOAD" > /tmp/payload.json
           TOKEN="${DISPATCH_TOKEN:-$GH_TOKEN}"
           if GH_TOKEN="$TOKEN" gh api repos/zhekui-hub/joint-ci-lab/dispatches --input /tmp/payload.json; then
-            echo "Dispatched joint_report to joint-ci-lab"
+            echo "Dispatched joint_ci_report to joint-ci-lab"
           else
             echo "::warning::repository_dispatch failed (need JOINT_CI_DISPATCH_TOKEN secret). Hook still marked pending."
           fi
