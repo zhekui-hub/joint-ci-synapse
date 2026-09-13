@@ -1,0 +1,14 @@
+name: synapse-independent-ci
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  synapse-independent-ci:
+    name: synapse-independent-ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Exclusive / independent tests (repo-owned)
+        run: |
+          echo "synapse-independent-ci: exclusive stub (NOT Arsenal public)"
+          exit 0

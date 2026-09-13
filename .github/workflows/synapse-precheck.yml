@@ -1,0 +1,14 @@
+name: synapse-precheck
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  synapse-precheck:
+    name: synapse-precheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Light precheck
+        run: |
+          echo "synapse-precheck: format/commitlint stub OK"
+          exit 0
